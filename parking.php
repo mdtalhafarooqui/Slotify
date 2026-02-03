@@ -83,6 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         body {
             min-height: 100vh;
             display: flex;
+            flex-direction: column; /* Changed to column to allow footer at bottom */
             align-items: center;
             justify-content: center;
             background: radial-gradient(circle at top, #281b75 0%, #050b28 40%, #020415 100%);
@@ -90,9 +91,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         .container {
+            flex: 1; /* Pushes footer down */
             width: 100%;
             max-width: 900px;
             padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .top-input {
@@ -139,49 +144,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             filter: brightness(0.95);
         }
 
-        .btn-park {
-            background: linear-gradient(135deg, #ff2e92, #f94b5e);
-        }
-
-        .btn-remove {
-            background: linear-gradient(135deg, #ff9800, #ff6a00);
-        }
-
-        .btn-display {
-            background: linear-gradient(135deg, #2979ff, #00b0ff);
-        }
-
-        .btn-next {
-            background: linear-gradient(135deg, #00c853, #00b248);
-        }
+        .btn-park { background: linear-gradient(135deg, #ff2e92, #f94b5e); }
+        .btn-remove { background: linear-gradient(135deg, #ff9800, #ff6a00); }
+        .btn-display { background: linear-gradient(135deg, #2979ff, #00b0ff); }
+        .btn-next { background: linear-gradient(135deg, #00c853, #00b248); }
 
         .message {
             margin-top: 26px;
             text-align: center;
-            font-size: 16px;
+            font-size: 18px;
             color: #f5f5f5;
-            min-height: 20px;
+            min-height: 24px;
+            font-weight: 500;
+        }
+
+        /* Footer Styling */
+        footer {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9rem;
+            color: #888;
+            opacity: 0.8;
         }
 
         @media (max-width: 720px) {
-            .top-input {
-                font-size: 20px;
-                padding: 14px 18px;
-            }
-
-            .btn {
-                font-size: 20px;
-                padding: 18px 10px;
-            }
-
-            .buttons-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
+            .top-input { font-size: 20px; padding: 14px 18px; }
+            .btn { font-size: 20px; padding: 18px 10px; }
+            .buttons-grid { grid-template-columns: 1fr; gap: 18px; }
         }
     </style>
 </head>
 <body>
+
 <div class="container">
     <form action="" method="post">
         <input
@@ -189,6 +184,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             name="car"
             class="top-input"
             placeholder="Enter car number"
+            autocomplete="off"
         >
 
         <div class="buttons-grid">
@@ -203,5 +199,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <?php if ($msg !== "") echo htmlspecialchars($msg); ?>
     </div>
 </div>
+
+<footer class="text-center py-4 small text-muted">
+    <div class="container-footer">
+        &copy; Copyright and Developed By Mohammed Talha Farooqui @ VJIT
+    </div>
+</footer>
+
 </body>
 </html>
